@@ -1,9 +1,9 @@
 public class Room {
-    String description = "";
-    Boolean hasMonsters = false;
-    String[] items;
+    String description;
+    Boolean hasMonsters;
+    String items;
 
-    public Room(String description, Boolean hasMonsters, String[] items){
+    public Room(String description, Boolean hasMonsters, String items){
         this.description = description;
         this.hasMonsters = hasMonsters;
         this.items = items;
@@ -15,7 +15,9 @@ public class Room {
         boolean hasMonsters = Math.random() < 0.5;
         String[] possibleItems = {"Rusty Sword", "Wooden Shield", "Coins"};
 
-        return null;
+        return new Room (possibleDescriptions[(int)(Math.random()*possibleDescriptions.length)],
+        hasMonsters,
+        possibleItems[(int)(Math.random()*possibleItems.length)]);
     }
 
     public void getDescription(){

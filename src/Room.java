@@ -21,6 +21,11 @@ public class Room {
     }
 
     public void getDescription(){
-        System.out.println(description);
+        System.out.println("Description: "+description);
+        if(hasMonsters){
+            System.out.println("There are Monsters!");
+        } else {
+            System.out.println("No monsters in this room.");
+        }
     }
 }

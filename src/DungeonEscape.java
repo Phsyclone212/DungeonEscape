@@ -7,8 +7,8 @@ public class DungeonEscape {
         player.addItem("Sword");
         player.addItem("Shield");
         player.addItem("Potion");
-        player.takeDamage(5);
-        player.removeItem("Potion");
         player.checkInventory();
+        Room currentRoom = Room.generateRoom();
+        currentRoom.getDescription();
     }
 }

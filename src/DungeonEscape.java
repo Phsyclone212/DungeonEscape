@@ -8,7 +8,8 @@ public class DungeonEscape {
         player.addItem("Shield");
         player.addItem("Potion");
         player.checkInventory();
-        Room currentRoom = Room.generateRoom();
-        currentRoom.getDescription();
+        GameMap dungeon = new GameMap(5,5);
+        dungeon.PrintMap();
+
     }
 }

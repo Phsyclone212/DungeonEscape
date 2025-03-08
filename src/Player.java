@@ -1,3 +1,5 @@
+
+
 public class Player {
     public int health;
     public int position;
@@ -17,8 +19,8 @@ public class Player {
         }
     }
 
-    public void move(int destination){
-        position = destination;
+    public void move(GameMap dungeon){ // FIX THIS -- needs to take in current pos, return direction to move
+        position = 0;
     }
 
     public void checkInventory(){

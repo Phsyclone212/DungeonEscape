@@ -1,13 +1,15 @@
-
+import java.util.Scanner;
 
 public class Player {
     public int health;
-    public int position;
+    public int posX;
+    public int posY;
     public String inventory[];
 
-    public Player(int health, int position, String[] inventory) {
+    public Player(int health, int posX, int posY, String[] inventory) {
         this.health = health;
-        this.position = position;
+        this.posX = posX;
+        this.posY = posY;
         this.inventory = inventory;
     }
 
@@ -19,8 +21,11 @@ public class Player {
         }
     }
 
-    public void move(GameMap dungeon){ // FIX THIS -- needs to take in current pos, return direction to move
-        position = 0;
+    public void move(GameMap dungeon, int posX, int posY){ // FIX THIS -- needs to take in current pos, return direction to move
+        Scanner in = new Scanner(System.in);
+        String position = posX+", "+posY; //mutable string to display position
+        System.out.println("Select the direction you want to move: ");
+        int direction = in.nextInt();
     }
 
     public void checkInventory(){

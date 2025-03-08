@@ -32,6 +32,16 @@ public class Room {
         }
     }
 
+    public void exploreRoom(){
+        // this.tag = hasMonsters ? 'M' : 'E';
+        if(hasMonsters){
+            this.tag = '!';
+        } else {
+            this.tag = '_';
+        }
+        this.getDescription();
+    }
+
     public char getTag(){
         return tag;
     }

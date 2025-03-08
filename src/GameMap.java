@@ -12,7 +12,14 @@ public class GameMap {
         }
     }
 
+    public void exploreRoom(int x, int y){
+        if(x >= 0 && x <= map.length && y >= 0 && y <= map[0].length){
+            map[x][y].exploreRoom();
+        }
+    }
+
     public void PrintMap(){
+        System.out.println("Current Map:");
         for(int i = 0; i < map.length; i++) {
             for(int j = 0; j < map[i].length; j++){
                 System.out.print("["+map[i][j].getTag()+"] ");

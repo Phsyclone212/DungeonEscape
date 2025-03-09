@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 public class Player {
+    Scanner in = new Scanner(System.in);
+
     public int health;
     public int posX;
     public int posY;
@@ -21,11 +23,49 @@ public class Player {
         }
     }
 
-    public void move(GameMap dungeon, int posX, int posY){ // FIX THIS -- needs to take in current pos, return direction to move
-        Scanner in = new Scanner(System.in);
+    public void move(GameMap dungeon, int direction){ 
         String position = posX+", "+posY; //mutable string to display position
-        System.out.println("Select the direction you want to move: ");
-        int direction = in.nextInt();
+
+        switch (direction) {
+            case 1:
+                if(posY-1 >= 0){
+                    posY -= 1; // move left
+                    position = posX+", "+posY;
+                } else {
+                    System.out.println("Cannot move in that direction!");
+                }
+                break;
+            case 2:
+                if(posY+1 < dungeon.map[0].length){
+                    posY += 1; // move right
+                    position = posX+", "+posY;
+                } else {
+                    System.out.println("Cannot move in that direction!");
+                }
+                break;
+            case 3:
+                if(posX-1 >= 0){
+                    posX -= 1; // move up
+                    position = posX+", "+posY;
+                } else {
+                    System.out.println("Cannot move in that direction!");
+                }
+                break;
+            case 4:
+                if(posX+1 < dungeon.map.length){
+                    posX += 1; // move down
+                    position = posX+", "+posY;
+                } else {
+                    System.out.println("Cannot move in that direction!");
+                }
+                break;
+            default:
+                System.out.println("Invalid direction!");
+                break;
+        }
+        System.out.println("Player moved to position: "+position);
+        dungeon.exploreRoom(posX, posY);
+        dungeon.PrintMap();
     }
 
     public void checkInventory(){

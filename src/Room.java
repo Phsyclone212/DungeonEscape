@@ -16,11 +16,11 @@ public class Room {
         String[] possibleDescriptions = {"Dark Room", "Open space", "Well-lit Room"};
         char tag = '?';
         boolean hasMonsters = Math.random() < 0.5;
-        String[] possibleItems = {"Rusty Sword", "Wooden Shield", "Coins"};
+        String[] items = {"Rusty Sword", "Wooden Shield", "Coins"};
 
         return new Room (possibleDescriptions[(int)(Math.random()*possibleDescriptions.length)], tag,
         hasMonsters,
-        possibleItems[(int)(Math.random()*possibleItems.length)]);
+        items[(int)(Math.random()*items.length)]);
     }
 
     public void getDescription(){
@@ -29,6 +29,9 @@ public class Room {
             System.out.println("There are Monsters!");
         } else {
             System.out.println("No monsters in this room.");
+        }
+        if(items != null){
+            System.out.println("Items: "+items);
         }
     }
 

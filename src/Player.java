@@ -98,6 +98,18 @@ public class Player {
         }
     }
 
+    public void getInfo(Items item){
+        System.out.println("Item: "+item.name+" Type: "+item.type);
+        if(item.type.equals("Weapon")){
+            System.out.println("Attack bonus: "+item.strength);
+        }
+        if(item.stackable){
+            System.out.println("Stackable");
+        } else {
+            System.out.println("Non-Stackable");
+        }
+    }
+
     public void removeItem(Items item){
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == item) {

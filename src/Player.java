@@ -6,9 +6,9 @@ public class Player {
     public int health;
     public int posX;
     public int posY;
-    public String inventory[];
+    public Items inventory[];
 
-    public Player(int health, int posX, int posY, String[] inventory) {
+    public Player(int health, int posX, int posY, Items[] inventory) {
         this.health = health;
         this.posX = posX;
         this.posY = posY;
@@ -16,7 +16,7 @@ public class Player {
     }
 
     public void takeDamage(int damage) {
-        if(inventory[1] == "Shield"){
+        if(inventory[1] == Items.shield){
             damage -= 1;
             if(damage < 0) {
                 damage = 0;
@@ -77,15 +77,20 @@ public class Player {
 
     public void checkInventory(){
         System.out.println("Inventory:");
-        for (String item : inventory) {
+        for (Items item : inventory) {
             if(item != null){
-                System.out.println(item);
+                System.out.println(item.name+" x"+item.amount);
             }
         }
     }
 
-    public void addItem(String item){
+    public void addItem(Items item){
         for (int i = 0; i < inventory.length; i++) {
+            if (inventory[i] == item && item.stackable == true) { //for things like coins/potions
+                item.amount += 1;
+                break;
+            }
+
             if (inventory[i] == null) {
                 inventory[i] = item;
                 break;
@@ -93,7 +98,7 @@ public class Player {
         }
     }
 
-    public void removeItem(String item){
+    public void removeItem(Items item){
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == item) {
                 inventory[i] = null;
@@ -104,7 +109,7 @@ public class Player {
 
     public void attack(Monster monster){
         int damage = (int)Math.floor((Math.random()*4));
-        if(inventory[0] == "Sword"){
+        if(inventory[0] == Items.sword){
             damage += 2;
         }
         System.out.println("Player attacked!");
@@ -115,11 +120,11 @@ public class Player {
     public void useItem(){
         checkInventory();
         System.out.println("Enter the item you want to use: ");
-        String item = in.next();
+        int choice = in.nextInt();
         for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i] == item) {
-                System.out.println("Player used "+item);
-                removeItem(item);
+            if (i == choice) {
+                System.out.println("Player used "+inventory[i]);
+                removeItem(inventory[i]);
                 break;
             }
         }

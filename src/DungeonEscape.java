@@ -9,10 +9,11 @@ public class DungeonEscape {
         int startX = (int)(Math.random()*5); // ONLY set to 5 because the dungeon is currently also set to 5
         int startY = (int)(Math.random()*5); // same as above
 
-        Player player = new Player(100, startX, startY, new String[20]);
-        player.addItem("Sword");
-        player.addItem("Shield");
-        player.addItem("Potion");
+        Player player = new Player(100, startX, startY, new Items[20]);
+        player.addItem(Items.sword);
+        player.addItem(Items.shield);
+        player.addItem(Items.potionHealth);
+        player.addItem(Items.coins);
         player.checkInventory();
         GameMap dungeon = new GameMap(5,5); //this is the dungeon that is also set to 5x5
         dungeon.map[startX][startY].hasMonsters = false;
@@ -44,6 +45,7 @@ public class DungeonEscape {
                                 inCombat = false;
                                 dungeon.map[player.posX][player.posY].hasMonsters = false;
                                 dungeon.map[player.posX][player.posY].tag = '_';
+                                dungeon.PrintMap();
                             } else {
                                 monster.attack(player); //monsters always attack back
                             }

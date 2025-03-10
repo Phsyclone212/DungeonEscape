@@ -1,10 +1,12 @@
+
+
 public class Room {
     String description;
     char tag = '?';
     Boolean hasMonsters;
-    String items;
+    Items items;
 
-    public Room(String description, char tag, Boolean hasMonsters, String items){
+    public Room(String description, char tag, Boolean hasMonsters, Items items){
         this.description = description;
         this.tag = tag;
         this.hasMonsters = hasMonsters;
@@ -16,7 +18,7 @@ public class Room {
         String[] possibleDescriptions = {"A Dark Room", "An open space", "Well-lit Room"};
         char tag = '?';
         boolean hasMonsters = Math.random() < 0.5;
-        String[] items = {"Rusty Sword", "Wooden Shield", "Coins", null, null, null};
+        Items[] items = {Items.sword, Items.shield, Items.coins, Items.potionHealth, null, null, null, null};
 
         return new Room (possibleDescriptions[(int)(Math.random()*possibleDescriptions.length)], tag,
         hasMonsters,
@@ -43,7 +45,7 @@ public class Room {
 
     public void searchRoom(Player player){
         if(items != null){
-            System.out.println("You found: "+items);
+            System.out.println("You found: "+items.amount+" "+items.name);
             player.addItem(items);
             items = null;
         } else {

@@ -18,6 +18,10 @@ public class GameMap {
         }
     }
 
+    public void searchRoom(Room room, Player player){
+        room.searchRoom(player);
+    }
+
     public void PrintMap(){
         System.out.println("Current Map:");
         for(int i = 0; i < map.length; i++) {

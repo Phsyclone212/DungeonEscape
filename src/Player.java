@@ -16,8 +16,15 @@ public class Player {
     }
 
     public void takeDamage(int damage) {
+        if(inventory[1] == "Shield"){
+            damage -= 1;
+            if(damage < 0) {
+                damage = 0;
+            }
+        }
         health -= damage;
         System.out.println("Player took " + damage + " damage!");
+        System.out.println("Player has " + health + " health left.");
         if (health <= 0) {
             System.out.println("Player has died!");
         }
@@ -95,11 +102,18 @@ public class Player {
         }
     }
 
-    public void attack(){
+    public void attack(Monster monster){
+        int damage = (int)Math.floor((Math.random()*4));
+        if(inventory[0] == "Sword"){
+            damage += 2;
+        }
         System.out.println("Player attacked!");
+        System.out.println("Player dealt "+damage+" damage!");
+        monster.takeDamage(damage);
     }
 
     public void useItem(){
+        checkInventory();
         System.out.println("Enter the item you want to use: ");
         String item = in.next();
         for (int i = 0; i < inventory.length; i++) {

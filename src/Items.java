@@ -19,15 +19,21 @@ public class Items {
     public static Items potionHealth = new Items("Health Potion", 10, "Consumable", 1, true);
 
     public void getInfo(Items item){
+        System.out.println("-----");
         System.out.println("Item: "+name+" Type: "+type);
         if(type.equals("Weapon")){
             System.out.println("Attack bonus: "+strength);
+        } else if(type.equals("Armor")){
+            System.out.println("Defense bonus: "+strength);
+        } else if(type.equals("Consumable")){
+            System.out.println("Heals: "+strength+" HP");
         }
         if(stackable){
             System.out.println("Stackable");
         } else {
             System.out.println("Non-Stackable");
         }
+        System.out.println("-----");
     }
 
 

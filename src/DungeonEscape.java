@@ -6,6 +6,7 @@ public class DungeonEscape {
     public static void main(String[] args) throws Exception {
         Boolean gameOver = false;
         Boolean inCombat = false;
+        Boolean invOpen = false;
         int startX = (int)(Math.random()*5); // ONLY set to 5 because the dungeon is currently also set to 5
         int startY = (int)(Math.random()*5); // same as above
         int playerHealth = 20;
@@ -16,7 +17,6 @@ public class DungeonEscape {
         player.addItem(Items.potionHealth);
         player.addItem(Items.coins);
         player.checkInventory();
-        // player.getInfo(player.inventory[0]);
         GameMap dungeon = new GameMap(5,5); //this is the dungeon that is also set to 5x5
         dungeon.map[startX][startY].hasMonsters = false;
         dungeon.map[startX][startY].tag = '_';
@@ -27,9 +27,9 @@ public class DungeonEscape {
         //gameloop
         while(!gameOver){
 
-            System.out.println("1. Move\n2. Search\n3. Check Inventory\n4. Quit");
+            System.out.println("1. Move\n2. Search\n3. Open Inventory\n4. Quit");
             int choice = in.nextInt();
-            if(choice == 1){
+            if(choice == 1){ // Move to a new room
                 System.out.println("Enter a direction to move (1: left, 2: right, 3: up, 4: down): ");
                 int direction = in.nextInt();
                 player.move(dungeon, direction);
@@ -59,11 +59,30 @@ public class DungeonEscape {
                         }
                     }
                 }
-            } else if(choice == 2){
+            } else if(choice == 2){ //Search room
+                System.out.println("You begin searching the room...");
                 dungeon.searchRoom(dungeon.map[player.posX][player.posY], player);
-            } else if(choice == 3){
+            } else if(choice == 3){ //OPen inventory
                 player.checkInventory();
-            } else if(choice == 4){
+                invOpen = true;
+                while(invOpen){
+                    System.out.println("1. List Inventory\n2. Get Item Info\n3. Close Inventory");
+                    int invChoice = in.nextInt();
+                    if(invChoice == 1){
+                        player.checkInventory();
+                        System.out.println("-----");
+                    } else if(invChoice == 2){
+                        System.out.println("Enter the item number to get info: ");
+                        int item = in.nextInt() - 1; // -1 to offset index to match label
+                        player.getInfo(player.inventory[item]);
+                    } else if(invChoice == 3){
+                        System.out.println("Closing Inventory...");
+                        invOpen = false;
+                    } else {
+                        System.out.println("Invalid choice!");
+                    }
+                }
+            } else if(choice == 4){ //Quit
                 gameOver = true;
             } else {
                 System.out.println("Invalid choice!");

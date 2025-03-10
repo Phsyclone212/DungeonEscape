@@ -77,9 +77,11 @@ public class Player {
 
     public void checkInventory(){
         System.out.println("Inventory:");
+        int label = 1;
         for (Items item : inventory) {
             if(item != null){
-                System.out.println(item.name+" x"+item.amount);
+                System.out.println(label+". "+item.name+" x"+item.amount);
+                label++;
             }
         }
     }
@@ -108,6 +110,7 @@ public class Player {
         } else {
             System.out.println("Non-Stackable");
         }
+        System.out.println("-----");
     }
 
     public void removeItem(Items item){

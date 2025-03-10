@@ -94,4 +94,20 @@ public class Player {
             }
         }
     }
+
+    public void attack(){
+        System.out.println("Player attacked!");
+    }
+
+    public void useItem(){
+        System.out.println("Enter the item you want to use: ");
+        String item = in.next();
+        for (int i = 0; i < inventory.length; i++) {
+            if (inventory[i] == item) {
+                System.out.println("Player used "+item);
+                removeItem(item);
+                break;
+            }
+        }
+    }
 }

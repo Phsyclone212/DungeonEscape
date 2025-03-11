@@ -95,10 +95,7 @@ public class DungeonEscape {
                     }   break;
                 case 4:
                     //Check stats
-                    System.out.println("--Player Stats--");
-                    System.out.println("HP: "+player.health);
-                    System.out.println("Slot 1: "+player.inventory[0].name);
-                    System.out.println("Slot 2: "+player.inventory[1].name);
+                    player.getStats(player);
                     break;
                 case 5:
                     //Quit

@@ -172,4 +172,13 @@ public class Player {
             System.out.println("Cannot use that item!");
         }
     }
+
+    public void getStats(Player player){
+        System.out.println("--Player Stats--");
+        System.out.println("HP: "+player.health);
+        System.out.println("Slot 1: "+player.inventory[0].name);
+        System.out.println("Slot 2: "+player.inventory[1].name);
+        System.out.println("Position: "+player.posX+", "+player.posY);
+        System.out.println("-----");
+    }
 }

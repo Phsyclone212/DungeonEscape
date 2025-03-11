@@ -54,7 +54,7 @@ public class DungeonEscape {
                                         monster.attack(player); //monsters always attack back
                                     }   break;
                                 case 2:
-                                    player.useItem(); //NOT WORKING PROPERLY
+                                    player.useItem(player); //FIXED
                                     monster.attack(player); //monsters always attack back
                                     break;
                                 default:

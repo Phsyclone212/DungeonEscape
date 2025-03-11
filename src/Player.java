@@ -149,26 +149,27 @@ public class Player {
         monster.takeDamage(damage);
     }
 
-    public void useItem(){
+    public void useItem(Player player){
         checkInventory();
         System.out.println("Enter the item you want to use: ");
-        int choice = in.nextInt() -1;
-        for (Items item : inventory) {
-            if (item == inventory[choice])
-                System.out.println("Player used "+item.name);
-                if(item.type == "Consumable"){
-                    health += item.strength;
-                    System.out.println("Player healed +"+item.strength+" HP!");
-                    if(health > 20){
-                        health = 20;
-                    }
-                    System.out.println("Player has "+health+" health.");
-                    item.amount -= 1;
-                    if(item.amount == 0){
-                        removeItem(item);
-                    }
-                }
-                break;
+        int choice = in.nextInt();
+        int curhealth = player.health;
+        Items item = inventory[choice-1];
+        if(item.type == "Consumable"){
+            player.health += item.strength;
+            if(player.health > 20){
+                player.health = 20;
+                int healedBy = 20-curhealth;
+                System.out.println("Player used "+item.name+" and healed "+healedBy+" HP!");
+            } else {
+                System.out.println("Player used "+item.name+" and healed "+item.strength+" HP!");
             }
+            item.amount -= 1;
+            if(item.amount <= 0){
+                removeItem(item);
+            }
+        } else {
+            System.out.println("Cannot use that item!");
         }
+    }
 }

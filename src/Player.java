@@ -103,15 +103,30 @@ public class Player {
     }
 
     public void getInfo(Items item){
-        System.out.println("Item: "+item.name+" Type: "+item.type);
-        if(item.type.equals("Weapon")){
-            System.out.println("Attack bonus: "+item.strength);
+        System.out.println("--Info--");
+        System.out.println("Item: "+item.name+"\nType: "+item.type);
+
+        switch (item.type) {
+            case "Weapon":
+                System.out.println("Attack bonus: "+item.strength);
+                break;
+            case "Armor":
+                System.out.println("Defense bonus: "+item.strength);
+                break;
+            case "Consumable":
+                System.out.println("Heals: +"+item.strength+" HP");
+                break;
+            default:
+                break;
         }
+
         if(item.stackable){
+            System.out.println("Amount: "+item.amount);
             System.out.println("Stackable");
         } else {
             System.out.println("Non-Stackable");
         }
+
         System.out.println("-----");
     }
 

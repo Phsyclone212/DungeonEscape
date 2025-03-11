@@ -18,31 +18,5 @@ public class Items {
     public static Items coins = new Items("Coins", 0, "Currency", (int)(Math.random()*10)+1, true);
     public static Items potionHealth = new Items("Health Potion", 10, "Consumable", 1, true);
 
-    public void getInfo(Items item){
-        System.out.println("-----");
-        System.out.println("Item: "+name);
-        System.out.println("Type: "+type);
-        switch (type) {
-            case "Weapon":
-                System.out.println("Attack bonus: "+strength);
-                break;
-            case "Armor":
-                System.out.println("Defense bonus: "+strength);
-                break;
-            case "Consumable":
-                System.out.println("Heals: +"+strength+" HP");
-                break;
-            default:
-                break;
-        }
-        if(stackable){
-            System.out.println("Stackable");
-        } else {
-            System.out.println("Non-Stackable");
-        }
-        System.out.println("-----");
-    }
-
-
     /*Not too sure if this is how I want it to be structured... Might be better to build smaller constructors for types? weapons/armor/etc. */
 }

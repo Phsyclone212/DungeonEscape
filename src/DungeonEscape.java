@@ -77,7 +77,6 @@ public class DungeonEscape {
                         int invChoice = in.nextInt();
                         if(invChoice == 1){
                             player.checkInventory();
-                            System.out.println("-----"); //not showing up?
                         } else if(invChoice == 2){
                             System.out.println("Enter the item number to get info: ");
                             int item = in.nextInt() - 1; // -1 to offset index to match label

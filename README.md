@@ -53,7 +53,7 @@ Great! Here’s a **structured project path** for building your **Dungeon Escape
 ### **🟠 Phase 3: Events & Game Mechanics**
 8. **Create a `Monster` class**  
    - Random chance for a monster in a room.  
-   - Basic combat: `attack()` and `takeDamage()`.  
+   - Basic combat: `attack()` and `takeDamage()`. 
 9. **Create an `Item` class**  
    - Types: Health potions, weapons, etc.  
    - Allow picking up and using items.  

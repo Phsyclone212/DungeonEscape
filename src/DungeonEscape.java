@@ -26,7 +26,7 @@ public class DungeonEscape {
         //gameloop
         while(!gameOver){
 
-            System.out.println("1. Move\n2. Search\n3. Open Inventory\n4. Quit");
+            System.out.println("1. Move\n2. Search\n3. Open Inventory\n4. Check Stats\n 5. Quit");
             int choice = in.nextInt();
             switch (choice) {
                 case 1:
@@ -94,6 +94,13 @@ public class DungeonEscape {
                         }
                     }   break;
                 case 4:
+                    //Check stats
+                    System.out.println("--Player Stats--");
+                    System.out.println("HP: "+player.health);
+                    System.out.println("Slot 1: "+player.inventory[0].name);
+                    System.out.println("Slot 2: "+player.inventory[1].name);
+                    break;
+                case 5:
                     //Quit
                     gameOver = true;
                     break;

@@ -12,7 +12,7 @@ public class Monster {
     }
 
     public void attack(Player player){
-        int damage = (int)Math.floor(0.5*(Math.random()*level));
+        int damage = (int)Math.floor((Math.random()*level));
         player.takeDamage(damage);
     }
 

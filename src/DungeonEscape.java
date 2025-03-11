@@ -26,10 +26,14 @@ public class DungeonEscape {
         //gameloop
         while(!gameOver){
 
-            System.out.println("1. Move\n2. Search\n3. Open Inventory\n4. Check Stats\n 5. Quit");
+            System.out.println("1. Check Map\n2. Move\n3. Search\n4. Open Inventory\n5. Check Stats\n6. Quit");
             int choice = in.nextInt();
             switch (choice) {
                 case 1:
+                    // Check map
+                    dungeon.PrintMap();
+                    break;
+                case 2:
                     // Move to a new room
                     System.out.println("Enter a direction to move (1: left, 2: right, 3: up, 4: down): ");
                     int direction = in.nextInt();
@@ -68,12 +72,12 @@ public class DungeonEscape {
                             }
                         }
                     }   break;
-                case 2:
+                case 3:
                     //Search room
                     System.out.println("You begin searching the room...");
                     dungeon.searchRoom(dungeon.map[player.posX][player.posY], player);
                     break;
-                case 3:
+                case 4:
                     //Open inventory
                     player.checkInventory();
                     invOpen = true;
@@ -93,11 +97,11 @@ public class DungeonEscape {
                             System.out.println("Invalid choice!");
                         }
                     }   break;
-                case 4:
+                case 5:
                     //Check stats
                     player.getStats(player);
                     break;
-                case 5:
+                case 6:
                     //Quit
                     gameOver = true;
                     break;

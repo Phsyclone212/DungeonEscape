@@ -20,13 +20,19 @@ public class Items {
 
     public void getInfo(Items item){
         System.out.println("-----");
-        System.out.println("Item: "+name+" Type: "+type);
-        if(type.equals("Weapon")){
-            System.out.println("Attack bonus: "+strength);
-        } else if(type.equals("Armor")){
-            System.out.println("Defense bonus: "+strength);
-        } else if(type.equals("Consumable")){
-            System.out.println("Heals: "+strength+" HP");
+        System.out.println("Item: "+name+"\nType: "+type);
+        switch (type) {
+            case "Weapon":
+                System.out.println("Attack bonus: "+strength);
+                break;
+            case "Armor":
+                System.out.println("Defense bonus: "+strength);
+                break;
+            case "Consumable":
+                System.out.println("Heals: +"+strength+" HP");
+                break;
+            default:
+                break;
         }
         if(stackable){
             System.out.println("Stackable");

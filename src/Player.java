@@ -78,12 +78,14 @@ public class Player {
     public void checkInventory(){
         System.out.println("Inventory:");
         int label = 1;
+        System.out.println("*******");
         for (Items item : inventory) {
             if(item != null){
                 System.out.println(label+". "+item.name+" x"+item.amount);
                 label++;
             }
         }
+        System.out.println("*******");
     }
 
     public void addItem(Items item){

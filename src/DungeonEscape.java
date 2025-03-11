@@ -16,7 +16,6 @@ public class DungeonEscape {
         player.addItem(Items.shield);
         player.addItem(Items.potionHealth);
         player.addItem(Items.coins);
-        player.checkInventory();
         GameMap dungeon = new GameMap(5,5); //this is the dungeon that is also set to 5x5
         dungeon.map[startX][startY].hasMonsters = false;
         dungeon.map[startX][startY].tag = '_';
@@ -66,11 +65,11 @@ public class DungeonEscape {
                 player.checkInventory();
                 invOpen = true;
                 while(invOpen){
-                    System.out.println("1. List Inventory\n2. Get Item Info\n3. Close Inventory");
+                    System.out.println("--Inventory Menu--\n1. List Inventory\n2. Get Item Info\n3. Close Inventory");
                     int invChoice = in.nextInt();
                     if(invChoice == 1){
                         player.checkInventory();
-                        System.out.println("-----");
+                        System.out.println("-----"); //not showing up?
                     } else if(invChoice == 2){
                         System.out.println("Enter the item number to get info: ");
                         int item = in.nextInt() - 1; // -1 to offset index to match label

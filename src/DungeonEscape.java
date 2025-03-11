@@ -54,12 +54,17 @@ public class DungeonEscape {
                                         monster.attack(player); //monsters always attack back
                                     }   break;
                                 case 2:
-                                    player.useItem();
-                                    inCombat = false;
+                                    player.useItem(); //NOT WORKING PROPERLY
+                                    monster.attack(player); //monsters always attack back
                                     break;
                                 default:
                                     System.out.println("Invalid action!");
                                     break;
+                            }
+                            if(player.health <= 0){ //did you die?
+                                System.out.println("Game Over!");
+                                gameOver = true;
+                                inCombat = false;
                             }
                         }
                     }   break;
@@ -69,7 +74,7 @@ public class DungeonEscape {
                     dungeon.searchRoom(dungeon.map[player.posX][player.posY], player);
                     break;
                 case 3:
-                    //OPen inventory
+                    //Open inventory
                     player.checkInventory();
                     invOpen = true;
                     while(invOpen){

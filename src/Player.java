@@ -152,13 +152,23 @@ public class Player {
     public void useItem(){
         checkInventory();
         System.out.println("Enter the item you want to use: ");
-        int choice = in.nextInt();
-        for (int i = 0; i < inventory.length; i++) {
-            if (i == choice) {
-                System.out.println("Player used "+inventory[i]);
-                removeItem(inventory[i]);
+        int choice = in.nextInt() -1;
+        for (Items item : inventory) {
+            if (item == inventory[choice])
+                System.out.println("Player used "+item.name);
+                if(item.type == "Consumable"){
+                    health += item.strength;
+                    System.out.println("Player healed +"+item.strength+" HP!");
+                    if(health > 20){
+                        health = 20;
+                    }
+                    System.out.println("Player has "+health+" health.");
+                    item.amount -= 1;
+                    if(item.amount == 0){
+                        removeItem(item);
+                    }
+                }
                 break;
             }
         }
-    }
 }

@@ -20,7 +20,8 @@ public class Items {
 
     public void getInfo(Items item){
         System.out.println("-----");
-        System.out.println("Item: "+name+"\nType: "+type);
+        System.out.println("Item: "+name);
+        System.out.println("Type: "+type);
         switch (type) {
             case "Weapon":
                 System.out.println("Attack bonus: "+strength);

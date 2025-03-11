@@ -17,7 +17,7 @@ public class Player {
 
     public void takeDamage(int damage) {
         if(inventory[1] == Items.shield){
-            damage -= 1;
+            damage -= Items.shield.strength;
             if(damage < 0) {
                 damage = 0;
             }
@@ -127,7 +127,7 @@ public class Player {
     public void attack(Monster monster){
         int damage = (int)Math.floor((Math.random()*4));
         if(inventory[0] == Items.sword){
-            damage += 2;
+            damage += Items.sword.strength;
         }
         System.out.println("Player attacked!");
         System.out.println("Player dealt "+damage+" damage!");

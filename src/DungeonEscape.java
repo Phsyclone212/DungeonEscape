@@ -42,21 +42,24 @@ public class DungeonEscape {
                         while(inCombat){
                             System.out.println("Enter 1 to attack, 2 to use an item: ");
                             int action = in.nextInt();
-                            if(action == 1){
-                                player.attack(monster);
-                                if(monster.health <= 0){
+                            switch (action) {
+                                case 1:
+                                    player.attack(monster);
+                                    if(monster.health <= 0){
+                                        inCombat = false;
+                                        dungeon.map[player.posX][player.posY].hasMonsters = false;
+                                        dungeon.map[player.posX][player.posY].tag = '_';
+                                        dungeon.PrintMap();
+                                    } else {
+                                        monster.attack(player); //monsters always attack back
+                                    }   break;
+                                case 2:
+                                    player.useItem();
                                     inCombat = false;
-                                    dungeon.map[player.posX][player.posY].hasMonsters = false;
-                                    dungeon.map[player.posX][player.posY].tag = '_';
-                                    dungeon.PrintMap();
-                                } else {
-                                    monster.attack(player); //monsters always attack back
-                                }
-                            } else if(action == 2){
-                                player.useItem();
-                                inCombat = false;
-                            } else {
-                                System.out.println("Invalid action!");
+                                    break;
+                                default:
+                                    System.out.println("Invalid action!");
+                                    break;
                             }
                         }
                     }   break;

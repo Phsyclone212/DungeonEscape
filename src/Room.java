@@ -21,21 +21,14 @@ public class Room {
         char tag = '?';
         boolean hasMonsters = Math.random() < 0.5;
         Items[] items = {Items.sword, Items.shield, Items.coins, Items.potionHealth, null, null, null, null};
+        Boolean isTheExit = false;
 
         return new Room (possibleDescriptions[(int)(Math.random()*possibleDescriptions.length)], tag,
         hasMonsters,
         items[(int)(Math.random()*items.length)],
-        false);
+        isTheExit);
     }
-
-    public void generateExit(GameMap map, Player player){
-        int exitX = (int)(Math.random()*map.map.length);
-        int exitY = (int)(Math.random()*map.map[0].length);
-        if(exitX != player.posX && exitY != player.posY){
-            map.map[exitX][exitY].isTheExit = true;
-        }
-    }
-
+    
     public void getDescription(){
         System.out.println("Room Description: "+description);
         if(hasMonsters){

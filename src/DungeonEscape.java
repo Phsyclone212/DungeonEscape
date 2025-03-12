@@ -25,8 +25,8 @@ public class DungeonEscape {
         dungeon.PrintMap();
         //gameloop
         while(!gameOver){
-
-            System.out.println("1. Check Map\n2. Move\n3. Search\n4. Open Inventory\n5. Check Stats\n6. Quit");
+            System.out.println("-*-**MAIN MENU**-*-");
+            System.out.println("1. Check Map\n2. Move\n3. Search\n4. Open Inventory\n5. Check Stats\n6. Quit\n-**-*-**-**-*-**-");
             int choice = in.nextInt();
             switch (choice) {
                 case 1:
@@ -35,7 +35,7 @@ public class DungeonEscape {
                     break;
                 case 2:
                     // Move to a new room
-                    System.out.println("Enter a direction to move (1: left, 2: right, 3: up, 4: down): ");
+                    System.out.println("Enter a direction to move (1: left, 2: right, 3: up, 4: down, 5: cancel): ");
                     int direction = in.nextInt();
                     player.move(dungeon, direction);
                     if(dungeon.map[player.posX][player.posY].hasMonsters){
@@ -66,12 +66,17 @@ public class DungeonEscape {
                                     break;
                             }
                             if(player.health <= 0){ //did you die?
-                                System.out.println("Game Over!");
+                                System.out.println("You died.\nGame Over!");
                                 gameOver = true;
                                 inCombat = false;
                             }
                         }
-                    }   break;
+                    }
+                    if(dungeon.map[player.posX][player.posY].isTheExit){
+                        System.out.println("You found the exit! You win!");
+                        gameOver = true;
+                    }   
+                    break;
                 case 3:
                     //Search room
                     System.out.println("You begin searching the room...");

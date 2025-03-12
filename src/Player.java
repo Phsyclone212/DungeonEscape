@@ -66,6 +66,9 @@ public class Player {
                     System.out.println("Cannot move in that direction!");
                 }
                 break;
+            case 5:
+                System.out.println("Cancelled move.");
+                break;
             default:
                 System.out.println("Invalid direction!");
                 break;
@@ -76,9 +79,8 @@ public class Player {
     }
 
     public void checkInventory(){
-        System.out.println("Inventory:");
         int label = 1;
-        System.out.println("*******");
+        System.out.println("***Inventory***");
         for (Items item : inventory) {
             if(item != null){
                 System.out.println(label+". "+item.name+" x"+item.amount);
@@ -143,8 +145,10 @@ public class Player {
         int damage = (int)Math.floor((Math.random()*4));
         if(inventory[0] == Items.sword){
             damage += Items.sword.strength;
-        }
+            System.out.println("You swing you sword!");
+        } else {
         System.out.println("Player attacked!");
+        }  
         System.out.println("Player dealt "+damage+" damage!");
         monster.takeDamage(damage);
     }

@@ -42,7 +42,7 @@ public class DungeonEscape {
         player.addItem(Items.shield);
         player.addItem(Items.potionHealth);
         player.addItem(Items.coins);
-        GameMap dungeon = new GameMap(5,5, player); //this is the dungeon that is also set to 5x5
+        GameMap dungeon = new GameMap(mapSize,mapSize, player); //this is the dungeon that is now set to mapSize x mapSize
         dungeon.map[startX][startY].hasMonsters = false;
         dungeon.map[startX][startY].tag = '_';
         dungeon.map[startX][startY].items = null;

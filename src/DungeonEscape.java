@@ -7,8 +7,34 @@ public class DungeonEscape {
         Boolean gameOver = false;
         Boolean inCombat = false;
         Boolean invOpen = false;
-        int startX = (int)(Math.random()*5); // ONLY set to 5 because the dungeon is currently also set to 5
-        int startY = (int)(Math.random()*5); // same as above
+        int mapSize = 5; //default size
+        System.out.println("--**--**-***Welcome to Dungeon Escape!***-**--**--");
+        System.out.println("You are dropped into a dungeon and must escape by finding the exit.");
+        System.out.println("You will encounter monsters along the way, but don't fret!");
+        System.err.println("You have a sword and shield to defend yourself.");
+        System.out.println("You also have a potion to heal yourself and coins to spend in your new life!");
+        System.out.println("Please select a difficulty: \n1. Easy (5x5)\n2. Medium (10x10)\n3. Hard (15x15)");
+        int difficulty = in.nextInt();
+        switch (difficulty) {
+            case 1:
+                System.out.println("You have selected Easy mode.\nGood choice!");
+                mapSize = 5;
+                break;
+            case 2:
+                System.out.println("You have selected Medium mode.\nChallenging yourself?");
+                mapSize = 10;
+                break;
+            case 3:
+                System.out.println("You have selected Hard mode.\nGood luck.");
+                mapSize = 15;
+                break;
+            default:
+                System.out.println("Invalid choice. Defaulting to Easy mode.");
+                break;
+        }
+
+        int startX = (int)(Math.random()*mapSize); // ONLY set to 5 because the dungeon is currently also set to 5
+        int startY = (int)(Math.random()*mapSize); // same as above
         int playerHealth = 20;
 
         Player player = new Player(playerHealth, startX, startY, new Items[20]);
@@ -20,7 +46,7 @@ public class DungeonEscape {
         dungeon.map[startX][startY].hasMonsters = false;
         dungeon.map[startX][startY].tag = '_';
         dungeon.map[startX][startY].items = null;
-        System.out.println("You are in a dungeon. Try to escape!");
+        System.out.println("You have been dropped into the dungeon. Try to escape!");
         dungeon.exploreRoom(player.posX, player.posY);
         dungeon.PrintMap();
         //gameloop

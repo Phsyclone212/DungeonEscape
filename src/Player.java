@@ -147,10 +147,10 @@ public class Player {
         }
     }
 
-    public void attack(Monster monster){
-        int damage = (int)Math.floor((Math.random()*4));
+    public void attack(Monster monster, Player player){
+        int damage = (int)Math.floor((Math.random()*player.level)+1); //new damage formula 3/17/25, player level scaling
         if(inventory[0] == Items.sword){
-            damage += Items.sword.strength;
+            damage += Items.sword.strength; //sword bonus currently static, constantly dealing max damage
             System.out.println("You swing you sword!");
         } else {
         System.out.println("Player attacked!");

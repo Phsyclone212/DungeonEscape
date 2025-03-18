@@ -74,7 +74,7 @@ public class DungeonEscape {
                             int action = in.nextInt();
                             switch (action) {
                                 case 1:
-                                    player.attack(monster);
+                                    player.attack(monster, player);
                                     if(monster.health <= 0){
                                         inCombat = false;
                                         player.gainXP(player, monster);

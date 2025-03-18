@@ -28,4 +28,5 @@ public class Monster {
     public void getHealth(){
         System.out.println("Monster health: "+health);
     }
+
 }

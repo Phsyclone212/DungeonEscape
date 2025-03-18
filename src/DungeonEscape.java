@@ -65,8 +65,8 @@ public class DungeonEscape {
                     int direction = in.nextInt();
                     player.move(dungeon, direction);
                     if(dungeon.map[player.posX][player.posY].hasMonsters){
-                        System.out.println("You encountered a monster!");
                         Monster monster = new Monster((int)(Math.random()*10)+1);
+                        System.out.println("You encountered a Lvl."+monster.level+" monster!");
                         monster.getHealth();
                         inCombat = true;
                         while(inCombat){

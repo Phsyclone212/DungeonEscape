@@ -22,8 +22,9 @@ public class Player {
     }
 
     public void takeDamage(int damage) {
-        if(inventory[1] == Items.shield){
-            damage -= Items.shield.strength;
+        Items slot2 = inventory[1]; //slot 2 is for shields/Armor
+        if(slot2.type == "Armor"){
+            damage -= slot2.strength;
             if(damage < 0) {
                 damage = 0;
             }
@@ -148,13 +149,14 @@ public class Player {
     }
 
     public void attack(Monster monster, Player player){
+        Items slot1 = player.inventory[0]; //slot 1 is for weapons
         int damage = (int)Math.floor((Math.random()*player.level)+1); //new damage formula 3/17/25, player level scaling
-        if(inventory[0] == Items.sword){
-            damage += Items.sword.strength; //sword bonus currently static, constantly dealing max damage
-            System.out.println("You swing you sword!");
+        if(slot1.type == "Weapon"){
+            damage += slot1.strength; //sword bonus currently static, constantly dealing max damage
+            System.out.println("You swing your "+slot1.name+"!");
         } else {
         System.out.println("Player attacked!");
-        }  
+        }
         System.out.println("Player dealt "+damage+" damage!");
         monster.takeDamage(damage);
     }
@@ -163,7 +165,7 @@ public class Player {
         checkInventory();
         System.out.println("Select the item you want to use: ");
         int choice = in.nextInt();
-        int curhealth = player.health;
+        int curhealth = player.health; //prevents over-healing on 172
         Items item = inventory[choice-1];
         if(item.type == "Consumable"){
             player.health += item.strength;

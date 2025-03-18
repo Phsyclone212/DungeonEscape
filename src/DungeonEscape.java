@@ -11,7 +11,7 @@ public class DungeonEscape {
         System.out.println("--**--**-***Welcome to Dungeon Escape!***-**--**--");
         System.out.println("You are dropped into a dungeon and must escape by finding the exit.");
         System.out.println("You will encounter monsters along the way, but don't fret!");
-        System.err.println("You have a sword and shield to defend yourself.");
+        System.err.println("You have a rusty sword and a cracked shield to defend yourself.");
         System.out.println("You also have a potion to heal yourself and coins to spend in your new life!");
         System.out.println("Please select a difficulty: \n1. Easy (5x5)\n2. Medium (10x10)\n3. Hard (15x15)");
         int difficulty = in.nextInt();
@@ -38,8 +38,8 @@ public class DungeonEscape {
         int playerHealth = 20;
 
         Player player = new Player(playerHealth, startX, startY, new Items[20]);
-        player.addItem(Items.sword);
-        player.addItem(Items.shield);
+        player.addItem(Items.rustySword);
+        player.addItem(Items.crackedShield);
         player.addItem(Items.potionHealth);
         player.addItem(Items.coins);
         GameMap dungeon = new GameMap(mapSize,mapSize, player); //this is the dungeon that is now set to mapSize x mapSize

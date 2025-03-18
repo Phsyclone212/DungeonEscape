@@ -77,6 +77,7 @@ public class DungeonEscape {
                                     player.attack(monster);
                                     if(monster.health <= 0){
                                         inCombat = false;
+                                        player.gainXP(player, monster);
                                         dungeon.map[player.posX][player.posY].hasMonsters = false;
                                         dungeon.map[player.posX][player.posY].tag = '_';
                                         dungeon.PrintMap();

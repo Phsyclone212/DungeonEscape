@@ -3,6 +3,9 @@ import java.util.Scanner;
 public class Player {
     Scanner in = new Scanner(System.in);
 
+    public int level = 1;
+    public int xp = 0;
+    public int xpToNextLevel = Math.round((float)(5*Math.pow(level, 2) + 5*level));
     public int health;
     public int posX;
     public int posY;
@@ -13,6 +16,9 @@ public class Player {
         this.posX = posX;
         this.posY = posY;
         this.inventory = inventory;
+        this.level = 1;
+        this.xp = 0;
+        this.xpToNextLevel = Math.round((float)(5*Math.pow(this.level, 2) + 5*this.level));
     }
 
     public void takeDamage(int damage) {
@@ -177,9 +183,28 @@ public class Player {
         }
     }
 
+    public void gainXP(Player player, Monster monster){
+        player.xp += monster.xp;
+        System.out.println("Player gained "+monster.xp+" XP!");
+        checkLevelUp(player);
+    }
+
+    public void checkLevelUp(Player player){
+        if(player.xp >= player.xpToNextLevel){
+            player.level += 1;
+            int remXP = player.xp - player.xpToNextLevel; //catches extra xp (NO XP WASTE BOIS)
+            player.xp = 0;
+            player.xpToNextLevel = Math.round((float)(5*Math.pow(player.level, 2) + 5*player.level));
+            System.out.println("Player leveled up to level "+player.level+"!");
+            player.xp += remXP; //adds any extra xp back to level
+            checkLevelUp(player); //recursion to check if player can level up again
+        }
+    }
+
     public void getStats(Player player){
         System.out.println("--Player Stats--");
-        System.out.println("HP: "+player.health);
+        System.out.println("LVL: "+player.level+" HP: "+player.health);
+        System.out.println("XP: "+player.xp+"/"+player.xpToNextLevel);
         System.out.println("Slot 1: "+player.inventory[0].name);
         System.out.println("Slot 2: "+player.inventory[1].name);
         System.out.println("Position: "+player.posX+", "+player.posY);

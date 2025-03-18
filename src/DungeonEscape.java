@@ -143,6 +143,7 @@ public class DungeonEscape {
                     break;
                 case 6:
                     //Quit
+                    System.out.println("Qutting game.\nThanks for playing!");
                     gameOver = true;
                     break;
                 default:

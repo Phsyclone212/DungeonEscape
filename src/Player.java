@@ -161,7 +161,7 @@ public class Player {
 
     public void useItem(Player player){
         checkInventory();
-        System.out.println("Enter the item you want to use: ");
+        System.out.println("Select the item you want to use: ");
         int choice = in.nextInt();
         int curhealth = player.health;
         Items item = inventory[choice-1];

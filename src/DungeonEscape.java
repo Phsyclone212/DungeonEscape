@@ -114,19 +114,27 @@ public class DungeonEscape {
                     player.checkInventory();
                     invOpen = true;
                     while(invOpen){
-                        System.out.println("--Inventory Menu--\n1. List Inventory\n2. Get Item Info\n3. Close Inventory");
+                        System.out.println("--Inventory Menu--\n1. List Inventory\n2. Get Item Info\n3. Use Item\n4. Close Inventory");
                         int invChoice = in.nextInt();
-                        if(invChoice == 1){
-                            player.checkInventory();
-                        } else if(invChoice == 2){
-                            System.out.println("Enter the item number to get info: ");
-                            int item = in.nextInt() - 1; // -1 to offset index to match label
-                            player.getInfo(player.inventory[item]);
-                        } else if(invChoice == 3){
-                            System.out.println("Closing Inventory...");
-                            invOpen = false;
-                        } else {
-                            System.out.println("Invalid choice!");
+                        switch (invChoice) {
+                            case 1:
+                                player.checkInventory();
+                                break;
+                            case 2:
+                                System.out.println("Enter the item number to get info: ");
+                                int item = in.nextInt() - 1; // -1 to offset index to match label
+                                player.getInfo(player.inventory[item]);
+                                break;
+                            case 3:
+                                player.useItem(player);
+                                break;
+                            case 4:
+                                System.out.println("Closing Inventory...");
+                                invOpen = false;
+                                break;
+                            default:
+                             System.out.println("Invalid choice!");
+                                break;
                         }
                     }   break;
                 case 5:

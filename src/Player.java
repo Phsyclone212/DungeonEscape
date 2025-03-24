@@ -3,6 +3,9 @@ import java.util.Scanner;
 public class Player {
     Scanner in = new Scanner(System.in);
 
+    public int level = 1;
+    public int xp = 0;
+    public int xpToNextLevel = Math.round((float)(5*Math.pow(level, 2) + 5*level));
     public int health;
     public int posX;
     public int posY;
@@ -13,11 +16,15 @@ public class Player {
         this.posX = posX;
         this.posY = posY;
         this.inventory = inventory;
+        this.level = 1;
+        this.xp = 0;
+        this.xpToNextLevel = Math.round((float)(5*Math.pow(this.level, 2) + 5*this.level));
     }
 
     public void takeDamage(int damage) {
-        if(inventory[1] == Items.shield){
-            damage -= Items.shield.strength;
+        Items slot2 = inventory[1]; //slot 2 is for shields/Armor
+        if(slot2.type == "Armor"){
+            damage -= slot2.strength;
             if(damage < 0) {
                 damage = 0;
             }
@@ -141,23 +148,24 @@ public class Player {
         }
     }
 
-    public void attack(Monster monster){
-        int damage = (int)Math.floor((Math.random()*4));
-        if(inventory[0] == Items.sword){
-            damage += Items.sword.strength;
-            System.out.println("You swing you sword!");
+    public void attack(Monster monster, Player player){
+        Items slot1 = player.inventory[0]; //slot 1 is for weapons
+        int damage = (int)Math.floor((Math.random()*player.level)+1); //new damage formula 3/17/25, player level scaling
+        if(slot1.type == "Weapon"){
+            damage += slot1.strength; //sword bonus currently static, constantly dealing max damage
+            System.out.println("You swing your "+slot1.name+"!");
         } else {
         System.out.println("Player attacked!");
-        }  
+        }
         System.out.println("Player dealt "+damage+" damage!");
         monster.takeDamage(damage);
     }
 
     public void useItem(Player player){
         checkInventory();
-        System.out.println("Enter the item you want to use: ");
+        System.out.println("Select the item you want to use: ");
         int choice = in.nextInt();
-        int curhealth = player.health;
+        int curhealth = player.health; //prevents over-healing on 172
         Items item = inventory[choice-1];
         if(item.type == "Consumable"){
             player.health += item.strength;
@@ -177,9 +185,28 @@ public class Player {
         }
     }
 
+    public void gainXP(Player player, Monster monster){
+        player.xp += monster.xp;
+        System.out.println("Player gained "+monster.xp+" XP!");
+        checkLevelUp(player);
+    }
+
+    public void checkLevelUp(Player player){
+        if(player.xp >= player.xpToNextLevel){
+            player.level += 1;
+            int remXP = player.xp - player.xpToNextLevel; //catches extra xp (NO XP WASTE BOIS)
+            player.xp = 0;
+            player.xpToNextLevel = Math.round((float)(5*Math.pow(player.level, 2) + 5*player.level));
+            System.out.println("Player leveled up to level "+player.level+"!");
+            player.xp += remXP; //adds any extra xp back to level
+            checkLevelUp(player); //recursion to check if player can level up again
+        }
+    }
+
     public void getStats(Player player){
         System.out.println("--Player Stats--");
-        System.out.println("HP: "+player.health);
+        System.out.println("LVL: "+player.level+" HP: "+player.health);
+        System.out.println("XP: "+player.xp+"/"+player.xpToNextLevel);
         System.out.println("Slot 1: "+player.inventory[0].name);
         System.out.println("Slot 2: "+player.inventory[1].name);
         System.out.println("Position: "+player.posX+", "+player.posY);

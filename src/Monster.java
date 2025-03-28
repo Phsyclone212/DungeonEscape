@@ -6,11 +6,12 @@ public class Monster {
     public int level;
     public int health;
     public int xp;
+    //want to introduce types of monsters. diversify the combat and scenarios.
 
     public Monster(int level) {
         this.level = level;
         this.health = level*3;
-        this.xp = this.health*5; //introducing xp on 3/17/25 -- no scale for player level yet
+        this.xp = this.health*5; 
     }
 
     public void attack(Player player){

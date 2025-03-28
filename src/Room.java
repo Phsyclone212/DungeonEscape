@@ -20,7 +20,7 @@ public class Room {
         String[] possibleDescriptions = {"A Dark Room", "An open space", "Well-lit Room"};
         char tag = '?';
         boolean hasMonsters = Math.random() < 0.5;
-        Items[] items = {Items.ironSword, Items.woodShield, Items.coins, Items.potionHealth, Items.crackedShield, Items.rustySword, Items.sapphire, null, null, null};
+        Items[] items = {Items.ironSword, Items.woodShield, Items.coins, Items.potionHealth, Items.crackedShield, Items.rustySword, Items.sapphire, Items.key, null, null, null};
         Boolean isTheExit = false;
 
         return new Room (possibleDescriptions[(int)(Math.random()*possibleDescriptions.length)], tag,

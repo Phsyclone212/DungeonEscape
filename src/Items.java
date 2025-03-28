@@ -24,6 +24,7 @@ public class Items {
     //CURRENCY AND TREASURE
     public static Items coins = new Items("Coins", 0, "Currency", (int)(Math.random()*10)+1, true, 1); //value can't be 1 for a stack tho...
     public static Items sapphire = new Items("Sapphire", 0, "Currency", 1, false, 5); //singular ver for fun?
+    public static Items key = new Items("Key", 0, "Currency", 1, false, 25); //for unlocking something in the future... *mystery intensifies*
 
     //CONSUMABLES
     public static Items potionHealth = new Items("Health Potion", 10, "Consumable", 1, true, 10);

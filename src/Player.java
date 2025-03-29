@@ -10,6 +10,7 @@ public class Player {
     public int posX;
     public int posY;
     public Items inventory[];
+    public Boolean hasKey;
 
     public Player(int health, int posX, int posY, Items[] inventory) {
         this.health = health;
@@ -19,6 +20,17 @@ public class Player {
         this.level = 1;
         this.xp = 0;
         this.xpToNextLevel = Math.round((float)(5*Math.pow(this.level, 2) + 5*this.level));
+    }
+
+
+    public boolean playerHasKey() {
+        //check if player has key in inventory
+        for (Items item : inventory) {
+            if (item != null && item.type.equals("Key")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void takeDamage(int damage) {

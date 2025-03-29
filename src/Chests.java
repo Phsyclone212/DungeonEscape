@@ -16,4 +16,31 @@ public class Chests {
     }
 
     //add openChest, unlockChest, and lootChest methods. Add relevent calls to Player, GameMap, and main classes.
+    public void generateLoot(Chests chest, Player player) {
+        //generate loot based on chest type and level
+        switch (chest.type) {
+            case "Wooden Chest":
+                chest.items = new Items[] {Items.woodShield, Items.coins, Items.potionHealth};
+                break;
+            case "Iron Chest":
+                chest.items = new Items[] {Items.ironSword, Items.coins, Items.potionHealth};
+                break;
+            case "Golden Chest":
+                chest.items = new Items[] {Items.sapphire, Items.coins, Items.potionHealth};
+                break;
+            default:
+                System.out.println("Invalid chest type!");
+                break;
+        }
+    }
+    //MOVING TO PLAYER CLASS
+    // public boolean playerHasKey(Player player) {
+    //     //check if player has key in inventory
+    //     for (Items item : player.inventory) {
+    //         if (item != null && item.type.equals("Key")) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
 }

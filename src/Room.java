@@ -63,7 +63,7 @@ public class Room {
             if(player.playerHasKey()){
                 System.out.println("You have a key! You can open the chest.");
                 //openChest method here
-                System.out.println("You opened the chest and found: "+items.amount+" "+items.name);
+                // System.out.println("You opened the chest and found: "+items.amount+" "+items.name); <-- this will likely be in openChest method
                 player.addItem(items);
                 items = null;
             } else {

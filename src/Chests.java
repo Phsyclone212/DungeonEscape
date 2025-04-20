@@ -33,14 +33,4 @@ public class Chests {
                 break;
         }
     }
-    //MOVING TO PLAYER CLASS
-    // public boolean playerHasKey(Player player) {
-    //     //check if player has key in inventory
-    //     for (Items item : player.inventory) {
-    //         if (item != null && item.type.equals("Key")) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
 }

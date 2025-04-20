@@ -33,8 +33,8 @@ public class DungeonEscape {
                 break;
         }
 
-        int startX = (int)(Math.random()*mapSize); // ONLY set to 5 because the dungeon is currently also set to 5
-        int startY = (int)(Math.random()*mapSize); // same as above
+        int startX = (int)(Math.random()*mapSize); //should match the default or new difficulty size.
+        int startY = (int)(Math.random()*mapSize);
         int playerHealth = 20;
 
         Player player = new Player(playerHealth, startX, startY, new Items[20]);

@@ -26,7 +26,7 @@ public class Player {
     public boolean playerHasKey() {
         //check if player has key in inventory
         for (Items item : inventory) {
-            if (item != null && item.type.equals("Key")) {
+            if (item != null && item.name.equals("Key")) {
                 return true;
             }
         }
@@ -155,7 +155,7 @@ public class Player {
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == item) {
                 inventory[i] = null;
-                break;
+                break; //prevents removing more than one of said item if non-stackable multiples (like keys)
             }
         }
     }
@@ -210,6 +210,7 @@ public class Player {
             player.xp = 0;
             player.xpToNextLevel = Math.round((float)(5*Math.pow(player.level, 2) + 5*player.level));
             System.out.println("Player leveled up to level "+player.level+"!");
+            player.health = 20; //reset health to max on level up
             player.xp += remXP; //adds any extra xp back to level
             checkLevelUp(player); //recursion to check if player can level up again
         }

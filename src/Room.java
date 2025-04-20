@@ -1,6 +1,7 @@
-
+import java.util.Scanner;
 
 public class Room {
+    Scanner in = new Scanner(System.in);
     String description;
     char tag = '?';
     Boolean hasMonsters;
@@ -23,8 +24,8 @@ public class Room {
         char tag = '?';
         boolean hasMonsters = Math.random() < 0.5;
         Items[] items = {Items.ironSword, Items.woodShield, Items.coins, Items.potionHealth, Items.crackedShield, Items.rustySword, Items.sapphire, Items.key, null, null, null};
-        Boolean isTheExit = false;
-        Boolean hasChest = Math.random() < 0.1; // 10% chance of having a chest
+        Boolean isTheExit = false; //this gets revisited after the whole map generates, an exit IS chosen.
+        Boolean hasChest = Math.random() < 0.1; //10% chance of a chest in the room
 
         return new Room (possibleDescriptions[(int)(Math.random()*possibleDescriptions.length)], tag,
         hasMonsters,
@@ -58,14 +59,29 @@ public class Room {
         } else {
             System.out.println("No items found.");
         }
-        if(hasChest){ // THIS LIL BIT IS NOT COMPLETE NOR FUNCTIONING AS INTENDED RIGHT NOW
-            System.out.println("You found a chest! It is locked. You'll need a key to open it.");
+        if(hasChest){ // THIS LIL BIT IS NOT COMPLETE BUT DOES NOW WORK FOR WHICHEVER SPECIFIED CHEST
+            Chests chest = new Chests("Wooden Chest", 0, 0, 0, null, true);
+            chest.generateLoot(chest, player);
+
+            System.out.println("You found a "+chest.type+"! It is locked. You'll need a key to open it.");
+
             if(player.playerHasKey()){
-                System.out.println("You have a key! You can open the chest.");
-                //openChest method here
-                // System.out.println("You opened the chest and found: "+items.amount+" "+items.name); <-- this will likely be in openChest method
-                player.addItem(items);
-                items = null;
+                System.out.println("You have a key!");
+                System.out.print("Do you want to unlock the chest? (y/n): ");
+                char choice = in.next().charAt(0);
+                if (choice == 'y' || choice == 'Y') {
+                    player.removeItem(Items.key);
+                    System.out.println("You unlock the chest...");
+                    for (Items item : chest.items) {
+                        if (item != null) {
+                            System.out.println("You found: " + item.name + " in the chest.");
+                            player.addItem(item);
+                        }
+                    }
+                } else {
+                    System.out.println("You chose not to unlock the chest.");
+                    this.tag = '#'; //mark for unopened chest
+                }
             } else {
                 System.out.println("You don't have a key to open the chest.");
             }

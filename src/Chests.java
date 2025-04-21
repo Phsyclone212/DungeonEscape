@@ -5,6 +5,7 @@ public class Chests {
     public int xp;
     public Items[] items;
     public Boolean isLocked;
+    public String[] chestTypes = {"Wooden Chest", "Iron Chest", "Golden Chest"};
 
     public Chests(String type, int level, int health, int xp, Items[] items, Boolean isLocked) {
         this.type = type;

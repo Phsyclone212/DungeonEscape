@@ -25,7 +25,7 @@ public class Room {
         boolean hasMonsters = Math.random() < 0.5;
         Items[] items = {Items.ironSword, Items.woodShield, Items.coins, Items.potionHealth, Items.crackedShield, Items.rustySword, Items.sapphire, Items.key, null, null, null};
         Boolean isTheExit = false; //this gets revisited after the whole map generates, an exit IS chosen.
-        Boolean hasChest = Math.random() < 0.1; //10% chance of a chest in the room
+        Boolean hasChest = true; //Math.random() < 0.1; 10% chance of a chest in the room CHANGE AFTER TESTING
 
         return new Room (possibleDescriptions[(int)(Math.random()*possibleDescriptions.length)], tag,
         hasMonsters,

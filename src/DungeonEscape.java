@@ -41,7 +41,7 @@ public class DungeonEscape {
         player.addItem(Items.rustySword);
         player.addItem(Items.crackedShield);
         player.addItem(Items.potionHealth);
-        player.addItem(Items.coins);
+        player.addItem(Items.key); //will change back to coins after testing
         GameMap dungeon = new GameMap(mapSize,mapSize, player); //this is the dungeon that is now set to mapSize x mapSize
         dungeon.map[startX][startY].hasMonsters = false;
         dungeon.map[startX][startY].tag = '_';

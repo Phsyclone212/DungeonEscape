@@ -227,6 +227,7 @@ public class Player {
     }
 
     //ADMIN SPAWNING ID THING, WOULD LOVE TO SWITCH TO KEY/VALUE PAIRS
+    //Another option would be to create specific id patterns like codes. 100's=weapons, 200s armor, 300s consumables, etc
     Items[] idList = {
         Items.key, //Index is the ID currently, so ID: 0 here.
         Items.potionHealth, // ID: 1

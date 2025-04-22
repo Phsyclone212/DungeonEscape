@@ -41,7 +41,7 @@ public class DungeonEscape {
         player.addItem(Items.rustySword);
         player.addItem(Items.crackedShield);
         player.addItem(Items.potionHealth);
-        player.addItem(Items.key); //will change back to coins after testing
+        player.addItem(Items.coins);
         GameMap dungeon = new GameMap(mapSize,mapSize, player); //this is the dungeon that is now set to mapSize x mapSize
         dungeon.map[startX][startY].hasMonsters = false;
         dungeon.map[startX][startY].tag = '_';
@@ -146,6 +146,16 @@ public class DungeonEscape {
                     System.out.println("Qutting game.\nThanks for playing!");
                     gameOver = true;
                     break;
+                case 9470571:
+                    //opens an admin menu to get what you need to test things without modifying code (keys, weapons, potions, etc)
+                    System.out.println("ADMIN MENU:");
+                    System.out.println("1. Get Item\n2. Full Health\n3. Set Level");
+                    int adminChoice = in.nextInt();
+                    switch(adminChoice){
+                        case 1:
+                            //this is going to need a new method in Items i think. It would work better.
+                            //add item to player inv
+                    }
                 default:
                     System.out.println("Invalid choice!");
                     break;

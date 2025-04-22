@@ -17,7 +17,7 @@ public class Chests {
     }
 
     //add openChest, unlockChest, and lootChest methods. Add relevent calls to Player, GameMap, and main classes.
-    public void generateLoot(Chests chest, Player player) {
+    public void generateLoot(Chests chest) {
         //generate loot based on chest type and level
         Items[] woodTier = new Items[] {Items.woodShield, Items.coins, Items.potionHealth};
         Items[] ironTier = new Items[] {Items.ironSword, Items.coins, Items.potionHealth};

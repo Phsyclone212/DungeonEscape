@@ -61,7 +61,7 @@ public class Room {
         }
         if(hasChest){ // We're getting there. Chests generate and should now randomly be one of the 3 types.
             Chests chest = new Chests(0, 0, 0, true);
-            chest.generateLoot(chest, player);
+            chest.generateLoot(chest);
 
             System.out.println("You found a "+chest.type+"! It is locked. You'll need a key to open it.");
 

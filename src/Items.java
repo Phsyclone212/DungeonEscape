@@ -1,4 +1,8 @@
+import java.util.Scanner;
+
 public class Items {
+    public Scanner in = new Scanner(System.in);
+
     public String name;
     public int strength;
     public String type;
@@ -28,5 +32,19 @@ public class Items {
 
     //CONSUMABLES
     public static Items potionHealth = new Items("Health Potion", 10, "Consumable", 1, true, 10);
+
+
+    //ADMIN SPAWNING ID THING
+    // Items[] idList = {
+    //     Items.key, //Index is the ID currently, so ID: 0 here.
+    //     Items.potionHealth, // ID: 1
+    //     Items.ironSword
+    // };
+
+    // public void spawnItem(Player player){
+    //     System.out.print("Enter item ID: ");
+    //     int itemID = in.nextInt();
+    //     player.addItem(idList[itemID]);
+    // }
 
 }

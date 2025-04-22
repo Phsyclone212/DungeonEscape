@@ -225,4 +225,17 @@ public class Player {
         System.out.println("Position: "+player.posX+", "+player.posY);
         System.out.println("-----");
     }
+
+    //ADMIN SPAWNING ID THING
+    Items[] idList = {
+        Items.key, //Index is the ID currently, so ID: 0 here.
+        Items.potionHealth, // ID: 1
+        Items.ironSword
+    };
+
+    public void spawnItem(Player player){
+        System.out.print("Enter item ID: ");
+        int itemID = in.nextInt();
+        player.addItem(idList[itemID]);
+    }
 }

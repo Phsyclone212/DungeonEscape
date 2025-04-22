@@ -153,8 +153,13 @@ public class DungeonEscape {
                     int adminChoice = in.nextInt();
                     switch(adminChoice){
                         case 1:
-                            //this is going to need a new method in Items i think. It would work better.
-                            //add item to player inv
+                            player.spawnItem(player);
+                        case 2:
+                            System.out.println("You've healed yourself to full health.");
+                            player.health = 20; //full health
+                        case 3:
+                            System.out.print("Enter what level you'd like to be: ");
+                            player.level = in.nextInt();
                     }
                 default:
                     System.out.println("Invalid choice!");

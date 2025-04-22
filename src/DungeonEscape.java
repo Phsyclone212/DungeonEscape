@@ -69,6 +69,7 @@ public class DungeonEscape {
                         System.out.println("You encountered a Lvl."+monster.level+" monster!");
                         monster.getHealth();
                         inCombat = true;
+                        dungeon.map[player.posX][player.posY].hasMonsters = false;//monster respawning/recursion disabled :D
                         while(inCombat){
                             System.out.println("Enter 1 to attack, 2 to use an item: ");
                             int action = in.nextInt();
@@ -163,7 +164,10 @@ public class DungeonEscape {
                             System.out.print("Enter what level you'd like to be: ");
                             player.level = in.nextInt();
                             break;
+                        default:
+                            System.out.println("Invalid Admin Cheaty cheater choice");
                     }
+                    break;
                 default:
                     System.out.println("Invalid choice!");
                     break;

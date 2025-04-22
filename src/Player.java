@@ -226,7 +226,7 @@ public class Player {
         System.out.println("-----");
     }
 
-    //ADMIN SPAWNING ID THING
+    //ADMIN SPAWNING ID THING, WOULD LOVE TO SWITCH TO KEY/VALUE PAIRS
     Items[] idList = {
         Items.key, //Index is the ID currently, so ID: 0 here.
         Items.potionHealth, // ID: 1

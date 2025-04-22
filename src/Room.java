@@ -8,6 +8,7 @@ public class Room {
     Items items;
     Boolean isTheExit = false;
     Boolean hasChest = false;
+    Chests chest;
 
     public Room(String description, char tag, Boolean hasMonsters, Items items, Boolean isTheExit, Boolean hasChest) {
         this.description = description;
@@ -28,7 +29,7 @@ public class Room {
         Boolean hasChest = true; //Math.random() < 0.1; 10% chance of a chest in the room CHANGE AFTER TESTING
 
         return new Room (possibleDescriptions[(int)(Math.random()*possibleDescriptions.length)], tag,
-        hasMonsters,
+        hasMonsters, 
         items[(int)(Math.random()*items.length)],
         isTheExit, hasChest);
     }
@@ -59,9 +60,11 @@ public class Room {
         } else {
             System.out.println("No items found.");
         }
-        if(hasChest){ // We're getting there. Chests generate and should now randomly be one of the 3 types.
-            Chests chest = new Chests(0, 0, 0, true);
-            chest.generateLoot(chest);
+        if(this.hasChest){ //Chests were re-rolling into different types on repeated searches. has been changed, not tested.
+            if(this.chest == null){
+                this.chest = new Chests(0, 0, 0, true);
+            }
+            chest.generateLoot(this.chest);
 
             System.out.println("You found a "+chest.type+"! It is locked. You'll need a key to open it.");
 
@@ -77,7 +80,7 @@ public class Room {
                         System.out.println("You found: " + chest.items.name + " in the chest.");
                         player.addItem(chest.items);
                     }
-                    
+                    this.hasChest = false;
                 } else {
                     System.out.println("You chose not to unlock the chest.");
                     this.tag = '#'; //mark for unopened chest

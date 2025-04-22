@@ -60,7 +60,7 @@ public class Room {
             System.out.println("No items found.");
         }
         if(hasChest){ // We're getting there. Chests generate and should now randomly be one of the 3 types.
-            Chests chest = new Chests(0, 0, 0, null, true);
+            Chests chest = new Chests(0, 0, 0, true);
             chest.generateLoot(chest, player);
 
             System.out.println("You found a "+chest.type+"! It is locked. You'll need a key to open it.");
@@ -72,12 +72,12 @@ public class Room {
                 if (choice == 'y' || choice == 'Y') {
                     player.removeItem(Items.key);
                     System.out.println("You unlock the chest...");
-                    for (Items item : chest.items) {
-                        if (item != null) {
-                            System.out.println("You found: " + item.name + " in the chest.");
-                            player.addItem(item);
-                        }
+                    //this needs testing
+                    if (chest.items != null) {
+                        System.out.println("You found: " + chest.items.name + " in the chest.");
+                        player.addItem(chest.items);
                     }
+                    
                 } else {
                     System.out.println("You chose not to unlock the chest.");
                     this.tag = '#'; //mark for unopened chest

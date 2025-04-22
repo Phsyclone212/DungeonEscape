@@ -152,22 +152,24 @@ public class DungeonEscape {
                     System.out.println("ADMIN MENU:");
                     System.out.println("1. Get Item\n2. Full Health\n3. Set Level");
                     int adminChoice = in.nextInt();
-                    switch(adminChoice){
-                        case 1:
-                            player.spawnItem(player);
-                            break;
-                        case 2:
-                            System.out.println("You've healed yourself to full health.");
-                            player.health = 20; //full health
-                            break;
-                        case 3:
-                            System.out.print("Enter what level you'd like to be: ");
-                            player.level = in.nextInt();
-                            break;
-                        default:
-                            System.out.println("Invalid Admin Cheaty cheater choice");
-                    }
-                    break;
+                    while(adminChoice != -1){
+                        switch(adminChoice){
+                            case 1:
+                                player.spawnItem(player);
+                                break;
+                            case 2:
+                                System.out.println("You've healed yourself to full health.");
+                                player.health = 20; //full health
+                                break;
+                            case 3:
+                                System.out.print("Enter what level you'd like to be: ");
+                                player.level = in.nextInt();
+                                break;
+                            default:
+                                System.out.println("Invalid Admin Cheaty cheater choice");
+                            }
+                        }
+                        break;
                 default:
                     System.out.println("Invalid choice!");
                     break;

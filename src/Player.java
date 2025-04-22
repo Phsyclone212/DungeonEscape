@@ -237,5 +237,6 @@ public class Player {
         System.out.print("Enter item ID: ");
         int itemID = in.nextInt();
         player.addItem(idList[itemID]);
+        System.out.println("Spawned Item: "+idList[itemID]);
     }
 }

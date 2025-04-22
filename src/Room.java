@@ -59,8 +59,8 @@ public class Room {
         } else {
             System.out.println("No items found.");
         }
-        if(hasChest){ // THIS LIL BIT IS NOT COMPLETE BUT DOES NOW WORK FOR WHICHEVER SPECIFIED CHEST
-            Chests chest = new Chests("Wooden Chest", 0, 0, 0, null, true);
+        if(hasChest){ // We're getting there. Chests generate and should now randomly be one of the 3 types.
+            Chests chest = new Chests(0, 0, 0, null, true);
             chest.generateLoot(chest, player);
 
             System.out.println("You found a "+chest.type+"! It is locked. You'll need a key to open it.");

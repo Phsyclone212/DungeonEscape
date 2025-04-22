@@ -7,8 +7,8 @@ public class Chests {
     public Boolean isLocked;
     public String[] chestTypes = {"Wooden Chest", "Iron Chest", "Golden Chest"};
 
-    public Chests(String type, int level, int health, int xp, Items[] items, Boolean isLocked) {
-        this.type = type;
+    public Chests(int level, int health, int xp, Items[] items, Boolean isLocked) {
+        this.type = chestTypes[(int)(Math.random()*chestTypes.length)];
         this.level = level;
         this.health = health;
         this.xp = xp;

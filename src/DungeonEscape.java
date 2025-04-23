@@ -8,6 +8,7 @@ public class DungeonEscape {
         Boolean inCombat = false;
         Boolean invOpen = false;
         int mapSize = 5; //default size
+        int playerHealth = 30; //default health
         System.out.println("--**--**-***Welcome to Dungeon Escape!***-**--**--");
         System.out.println("You are dropped into a dungeon and must escape by finding the exit.");
         System.out.println("You will encounter monsters along the way, but don't fret!");
@@ -19,14 +20,17 @@ public class DungeonEscape {
             case 1:
                 System.out.println("You have selected Easy mode.\nGood choice!");
                 mapSize = 5;
+                playerHealth = 30;
                 break;
             case 2:
                 System.out.println("You have selected Medium mode.\nChallenging yourself?");
                 mapSize = 10;
+                playerHealth = 25;
                 break;
             case 3:
                 System.out.println("You have selected Hard mode.\nGood luck.");
                 mapSize = 15;
+                playerHealth = 20;
                 break;
             default:
                 System.out.println("Invalid choice. Defaulting to Easy mode.");
@@ -35,7 +39,6 @@ public class DungeonEscape {
 
         int startX = (int)(Math.random()*mapSize); //should match the default or new difficulty size.
         int startY = (int)(Math.random()*mapSize);
-        int playerHealth = 20;
 
         Player player = new Player(playerHealth, startX, startY, new Items[20]);
         player.addItem(Items.rustySword);
@@ -152,14 +155,14 @@ public class DungeonEscape {
                     System.out.println("ADMIN MENU:");
                     System.out.println("1. Get Item\n2. Full Health\n3. Set Level");
                     int adminChoice = in.nextInt();
-                    while(adminChoice != -1){
+                    // while(adminChoice != 0){
                         switch(adminChoice){
                             case 1:
                                 player.spawnItem(player);
                                 break;
                             case 2:
                                 System.out.println("You've healed yourself to full health.");
-                                player.health = 20; //full health
+                                player.health = 30; //default is 30, make method to set max health based on level.
                                 break;
                             case 3:
                                 System.out.print("Enter what level you'd like to be: ");
@@ -168,7 +171,7 @@ public class DungeonEscape {
                             default:
                                 System.out.println("Invalid Admin Cheaty cheater choice");
                             }
-                        }
+                        // }
                         break;
                 default:
                     System.out.println("Invalid choice!");

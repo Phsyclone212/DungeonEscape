@@ -7,6 +7,7 @@ public class Player {
     public int xp = 0;
     public int xpToNextLevel = Math.round((float)(5*Math.pow(level, 2) + 5*level));
     public int health;
+    public int maxHealth;
     public int posX;
     public int posY;
     public Items inventory[];
@@ -14,6 +15,7 @@ public class Player {
 
     public Player(int health, int posX, int posY, Items[] inventory) {
         this.health = health;
+        this.maxHealth = health; //max health is initial input, but will change on lvlup
         this.posX = posX;
         this.posY = posY;
         this.inventory = inventory;
@@ -210,7 +212,8 @@ public class Player {
             player.xp = 0;
             player.xpToNextLevel = Math.round((float)(5*Math.pow(player.level, 2) + 5*player.level));
             System.out.println("Player leveled up to level "+player.level+"!");
-            player.health = 20; //reset health to max on level up
+            player.maxHealth += 5;
+            player.health = player.maxHealth; //reset health to max on level up
             player.xp += remXP; //adds any extra xp back to level
             checkLevelUp(player); //recursion to check if player can level up again
         }

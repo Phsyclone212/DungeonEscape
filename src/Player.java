@@ -232,8 +232,8 @@ public class Player {
         System.out.println("--Player Stats--");
         System.out.println("LVL: "+player.level+" HP: "+player.health);
         System.out.println("XP: "+player.xp+"/"+player.xpToNextLevel);
-        System.out.println("Weapon: "+equippedWeapon.name);
-        System.out.println("Armor: "+equippedArmor.name);
+        System.out.println("Weapon: "+equippedWeapon.getName(equippedWeapon));
+        System.out.println("Armor: "+equippedArmor.getName(equippedArmor));
         System.out.println("Position: "+player.posX+", "+player.posY);
         System.out.println("-----");
     }
@@ -254,12 +254,16 @@ public class Player {
             System.out.println("No armor equipped.");
         }
     }
+
+
     //ADMIN SPAWNING ID THING, WOULD LOVE TO SWITCH TO KEY/VALUE PAIRS
     //Another option would be to create specific id patterns like codes. 100's=weapons, 200s armor, 300s consumables, etc
     Items[] idList = {
         Items.key, //Index is the ID currently, so ID: 0 here.
         Items.potionHealth, // ID: 1
-        Items.ironSword // ID: 2 and so on...
+        Items.ironSword,
+        Items.woodShield,
+        Items.ironLongsword,
     };
 
     public void spawnItem(Player player){

@@ -42,7 +42,9 @@ public class DungeonEscape {
 
         Player player = new Player(playerHealth, startX, startY, new Items[20]);
         player.addItem(Items.rustySword);
+        player.equippedWeapon = Items.rustySword; //equipping the rusty sword
         player.addItem(Items.crackedShield);
+        player.equippedArmor = Items.crackedShield; //equipping the cracked shield
         player.addItem(Items.potionHealth);
         player.addItem(Items.coins);
         GameMap dungeon = new GameMap(mapSize,mapSize, player); //this is the dungeon that is now set to mapSize x mapSize

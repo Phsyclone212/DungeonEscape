@@ -12,6 +12,8 @@ public class Player {
     public int posY;
     public Items inventory[];
     public Boolean hasKey;
+    public Items equippedWeapon;
+    public Items equippedArmor;
 
     public Player(int health, int posX, int posY, Items[] inventory) {
         this.health = health;
@@ -36,9 +38,8 @@ public class Player {
     }
 
     public void takeDamage(int damage) {
-        Items slot2 = inventory[1]; //slot 2 is for shields/Armor
-        if(slot2.type == "Armor"){
-            damage -= slot2.strength;
+        if(equippedArmor != null) {
+            damage -= equippedArmor.strength;
             if(damage < 0) {
                 damage = 0;
             }
@@ -163,11 +164,10 @@ public class Player {
     }
 
     public void attack(Monster monster, Player player){
-        Items slot1 = player.inventory[0]; //slot 1 is for weapons
         int damage = (int)Math.floor((Math.random()*player.level)+1); //new damage formula 3/17/25, player level scaling
-        if(slot1.type == "Weapon"){
-            damage += slot1.strength; //sword bonus currently static, constantly dealing max damage
-            System.out.println("You swing your "+slot1.name+"!");
+        if(equippedWeapon != null){
+            damage += equippedWeapon.strength; //sword bonuses should now be different based on weapon equipped
+            System.out.println("You swing your "+equippedWeapon.name+"!");
         } else {
         System.out.println("Player attacked!");
         }
@@ -181,7 +181,7 @@ public class Player {
         int choice = in.nextInt();
         int curhealth = player.health; //prevents over-healing on 172
         Items item = inventory[choice-1];
-        if(item.type == "Consumable"){
+        if("Consumable".equals(item.type)){
             player.health += item.strength;
             if(player.health > 20){
                 player.health = 20;
@@ -194,9 +194,18 @@ public class Player {
             if(item.amount <= 0){
                 removeItem(item);
             }
+        } else if ("Weapon".equals(item.type)) {
+                player.equippedWeapon = item;
+                System.out.println("You equipped the "+item.name+".");
+            
+        } else if ("Armor".equals(item.type)) {
+                player.equippedArmor = item;
+                System.out.println("You equipped the "+item.name+"!");
+        
         } else {
             System.out.println("Cannot use that item!");
         }
+        statCheck();
     }
 
     public void gainXP(Player player, Monster monster){
@@ -223,18 +232,34 @@ public class Player {
         System.out.println("--Player Stats--");
         System.out.println("LVL: "+player.level+" HP: "+player.health);
         System.out.println("XP: "+player.xp+"/"+player.xpToNextLevel);
-        System.out.println("Slot 1: "+player.inventory[0].name);
-        System.out.println("Slot 2: "+player.inventory[1].name);
+        System.out.println("Weapon: "+equippedWeapon.name);
+        System.out.println("Armor: "+equippedArmor.name);
         System.out.println("Position: "+player.posX+", "+player.posY);
         System.out.println("-----");
     }
-
+    
+    private void statCheck() {
+        System.out.println("Player Stats Updated:");
+        System.out.println("Health: " + health + "/" + maxHealth);
+        System.out.println("Level: " + level);
+        System.out.println("XP: " + xp + "/" + xpToNextLevel);
+        if (equippedWeapon != null) {
+            System.out.println("Equipped Weapon: " + equippedWeapon.name);
+        } else {
+            System.out.println("No weapon equipped.");
+        }
+        if (equippedArmor != null) {
+            System.out.println("Equipped Armor: " + equippedArmor.name);
+        } else {
+            System.out.println("No armor equipped.");
+        }
+    }
     //ADMIN SPAWNING ID THING, WOULD LOVE TO SWITCH TO KEY/VALUE PAIRS
     //Another option would be to create specific id patterns like codes. 100's=weapons, 200s armor, 300s consumables, etc
     Items[] idList = {
         Items.key, //Index is the ID currently, so ID: 0 here.
         Items.potionHealth, // ID: 1
-        Items.ironSword
+        Items.ironSword // ID: 2 and so on...
     };
 
     public void spawnItem(Player player){
@@ -243,4 +268,5 @@ public class Player {
         player.addItem(idList[itemID]);
         System.out.println("Spawned Item: "+idList[itemID]);
     }
+
 }

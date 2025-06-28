@@ -60,33 +60,37 @@ public class Room {
         } else {
             System.out.println("No items found.");
         }
-        if(this.hasChest){ //Chests were re-rolling into different types on repeated searches. has been changed, not tested.
+        if(this.hasChest){ //Chests were re-rolling into different types on repeated searches. has been changed, fixed.
             if(this.chest == null){
-                this.chest = new Chests(0, 0, 0, true);
+                this.chest = new Chests();
             }
             chest.generateLoot(this.chest);
 
-            System.out.println("You found a "+chest.type+"! It is locked. You'll need a key to open it.");
+            if(!chest.isMimic){
+                System.out.println("You found a "+chest.type+"! It is locked. You'll need a key to open it.");
 
-            if(player.playerHasKey()){
-                System.out.println("You have a key!");
-                System.out.print("Do you want to unlock the chest? (y/n): ");
-                char choice = in.next().charAt(0);
-                if (choice == 'y' || choice == 'Y') {
-                    player.removeItem(Items.key);
-                    System.out.println("You unlock the chest...");
-                    //this needs testing
-                    if (chest.items != null) {
-                        System.out.println("You found: " + chest.items.name + " in the chest.");
-                        player.addItem(chest.items);
+                if(player.playerHasKey()){
+                    System.out.println("You have a key!");
+                    System.out.print("Do you want to unlock the chest? (y/n): ");
+                    char choice = in.next().charAt(0);
+                    if (choice == 'y' || choice == 'Y') {
+                        player.removeItem(Items.key);
+                        System.out.println("You unlock the chest...");
+                        //this needs testing
+                        if (chest.item != null) {
+                            System.out.println("You found: " + chest.item.name + " in the chest.");
+                            player.addItem(chest.item);
+                        }
+                        this.hasChest = false;
+                    } else {
+                        System.out.println("You chose not to unlock the chest.");
+                        this.tag = '#'; //mark for unopened chest
                     }
-                    this.hasChest = false;
                 } else {
-                    System.out.println("You chose not to unlock the chest.");
-                    this.tag = '#'; //mark for unopened chest
+                    System.out.println("You don't have a key to open the chest.");
                 }
             } else {
-                System.out.println("You don't have a key to open the chest.");
+                mimicFight(player, this.chest);
             }
         } else {
             System.out.println("No chests found.");
@@ -95,5 +99,11 @@ public class Room {
 
     public char getTag(){
         return tag;
+    }
+
+    public void mimicFight(Player player, Chests chest) {
+        //will figure this out later, for now just a placeholder
+        //Boolean inCombat = true;
+        
     }
 }

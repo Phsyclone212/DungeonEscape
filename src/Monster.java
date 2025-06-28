@@ -11,7 +11,7 @@ public class Monster {
     public Monster(int level) {
         this.level = level;
         this.health = level*3;
-        this.xp = this.health*5; 
+        this.xp = this.health*3; // 3xp per health/damage dealt
     }
 
     public void attack(Player player){
